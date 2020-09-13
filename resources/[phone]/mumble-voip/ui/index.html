@@ -6,14 +6,14 @@
 		<style>
 			.info-container {
 				position: absolute;
-				bottom: 0%;
-				right: 0%;
+				bottom: 4.0%;
+				left: 97.1%;
 				text-align: right;
 				padding: 5px;
 				font-family: sans-serif;
 				font-weight: bold;
-				color: rgb(1, 176, 240);
-				font-size: 0.5vw;
+				color: rgb(169, 173, 173);
+				font-size: 0.6vw;
 				text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 			}
 
@@ -25,7 +25,7 @@
 				position: fixed;
 				top: 0%;
 				right: 0%;
-				text-align: right;
+				text-align: left;
 				opacity: 0.4;
 				z-index: 99;
 				color: rgb(184, 185, 185);
@@ -33,19 +33,6 @@
 				font-weight: normal;
 				font-size: 0.5vw;
 				opacity: 0.8;
-			}
-
-			.radio-list-container {
-				position: absolute;
-				top: 1%;
-				right: 0%;
-				text-align: right;
-				padding: 5px;
-				font-family: sans-serif;
-				font-weight: bold;
-				color: rgb(1, 176, 240);
-				font-size: 0.5vw;
-				text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 			}
 		</style>
 		<script type="text/javascript">
@@ -68,7 +55,7 @@
 				if (item.mode) {					
 					let modeElem = document.getElementById("voip-mode");
 
-					modeElem.textContent = item.mode + (item.radioActive ? " on radio" : "");
+					modeElem.innerHTML = item.mode + (item.radioActive ? " on radio" : "");
 
 					if (item.talking != null) {
 						if (item.talking) {
@@ -83,9 +70,9 @@
 					let radioElem = document.getElementById("voip-radio");
 
 					if (item.radio > 0 || isNaN(item.radio)) {
-						radioElem.textContent = "[Radio] " + item.radio + (!isNaN(item.radio) ? " MHz" : "");					
+						radioElem.innerHTML = "" + item.radio + (!isNaN(item.radio) ? " MHz" : "");					
 					} else {
-						radioElem.textContent = "";
+						radioElem.innerHTML = "";
 					}
 				}
 
@@ -94,76 +81,12 @@
 					
 					if (item.call > 0) {
 						if (speakerEnabled) {
-							callElem.textContent = "[Call] [" + (item.speaker ? "\uD83D\uDD0A" : "\uD83D\uDD08") + "] " + item.call;
+							callElem.innerHTML = "[Call] [" + (item.speaker ? "🔊" : "🔈") + "] " + item.call;
 						} else {
-							callElem.textContent = "[Call] " + item.call;
+							callElem.innerHTML = "[Call] " + item.call;
 						}
 					} else {
-						callElem.textContent = "";
-					}
-				}
-
-				if (item.warningId != null) {
-					let warningElem = document.getElementById("voip-warning");
-
-					if (item.warningMsg != null) {
-						let warningItem = document.createElement("div");
-						let warningItemTitle = document.createElement("span");
-						let warningItemContent = document.createElement("span");
-
-						warningItem.id = item.warningId;
-						warningItemTitle.textContent = "[Warning] ";
-						warningItemTitle.className = "talking";
-						warningItemContent.textContent = item.warningMsg;
-
-						warningItem.appendChild(warningItemTitle);
-						warningItem.appendChild(warningItemContent);
-						warningElem.appendChild(warningItem);
-					} else {
-						let warningItem = document.getElementById(item.warningId);
-						warningElem.removeChild(warningItem);
-					}
-				}
-
-				if (item.radioId != null) {
-					let radioListElem = document.getElementById("voip-radio-list");
-
-					if (!radioListElem.firstChild) { //add radio list header
-						let listHeader = document.createElement("div");
-
-						listHeader.id = "voip-radio-list-header";
-						listHeader.textContent = "\uD83D\uDCE1Radio List";
-						listHeader.style.textDecorationLine = "underline";
-
-						radioListElem.appendChild(listHeader);
-					}
-
-					if (item.radioName != null) {
-						let listItem = document.createElement("div");
-
-						listItem.id = "voip-radio-list-item-" + item.radioId;
-						listItem.textContent = item.radioName + (item.self ? "\uD83D\uDD38" : "\uD83D\uDD39");
-
-						radioListElem.appendChild(listItem);
-					} else if (item.radioTalking != null) {
-						let listItem = document.getElementById("voip-radio-list-item-" + item.radioId)
-						
-						if (item.radioTalking) {
-							listItem.className = "talking"
-						} else {
-							listItem.className = ""
-						}
-					} else {
-						let listItem = document.getElementById("voip-radio-list-item-" + item.radioId)
-						radioListElem.removeChild(listItem);
-					}
-				}
-
-				if (item.clearRadioList) {
-					let radioListElem = document.getElementById("voip-radio-list");
-
-					while (radioListElem.firstChild) {
-						radioListElem.removeChild(radioListElem.firstChild);
+						callElem.innerHTML = "";
 					}
 				}
 			});
@@ -173,13 +96,12 @@
 		<audio id="audio_on" src="mic_click_on.ogg"></audio>
 		<audio id="audio_off" src="mic_click_off.ogg"></audio>
 
-		<div class="watermark">mumble-voip by Frazzle.</div>
-		<div class="radio-list-container" id="voip-radio-list"></div>
+		<div class="watermark">GENERATION RP</div>
+		
 		<div class="info-container">
-			<div>[Mumble] <span id="voip-mode">Initialising</span></div>
+			<div><span id="voip-mode"></span></div>
 			<div id="voip-radio"></div>
 			<div id="voip-call"></div>
-			<div id="voip-warning"></div>
 		</div>
 	</body>
 </html>
