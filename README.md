@@ -6,6 +6,7 @@ Base template pour apprendre à developper.
 - LOADINGSCREEN
 - HUD DE BASE
 
+CONFIGUREZ VOTRE SERVEUR.CFG , MERCI !
 
 Amusez-vous ;) 
 
