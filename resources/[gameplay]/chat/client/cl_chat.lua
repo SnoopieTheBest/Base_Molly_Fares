@@ -1,5 +1,3 @@
-local isRDR = not TerraingridActivate and true or false
-
 local chatInputActive = false
 local chatInputActivating = false
 local chatHidden = true
@@ -11,7 +9,7 @@ RegisterNetEvent('chat:addMessage')
 RegisterNetEvent('chat:addSuggestion')
 RegisterNetEvent('chat:addSuggestions')
 RegisterNetEvent('chat:removeSuggestion')
-RegisterNetEvent('chat:clear')
+RegisterNetEvent('chat:client:ClearChat')
 
 -- internal events
 RegisterNetEvent('__cfx_internal:serverPrint')
@@ -28,7 +26,6 @@ AddEventHandler('chatMessage', function(author, color, text)
     type = 'ON_MESSAGE',
     message = {
       color = color,
-      multiline = true,
       args = args
     }
   })
@@ -41,7 +38,6 @@ AddEventHandler('__cfx_internal:serverPrint', function(msg)
     type = 'ON_MESSAGE',
     message = {
       templateId = 'print',
-      multiline = true,
       args = { msg }
     }
   })
@@ -81,6 +77,13 @@ AddEventHandler('chat:removeSuggestion', function(name)
   })
 end)
 
+RegisterNetEvent('chat:resetSuggestions')
+AddEventHandler('chat:resetSuggestions', function()
+  SendNUIMessage({
+    type = 'ON_COMMANDS_RESET'
+  })
+end)
+
 AddEventHandler('chat:addTemplate', function(id, html)
   SendNUIMessage({
     type = 'ON_TEMPLATE_ADD',
@@ -91,7 +94,7 @@ AddEventHandler('chat:addTemplate', function(id, html)
   })
 end)
 
-AddEventHandler('chat:clear', function(name)
+AddEventHandler('chat:client:ClearChat', function(name)
   SendNUIMessage({
     type = 'ON_CLEAR'
   })
@@ -196,7 +199,7 @@ Citizen.CreateThread(function()
     Wait(0)
 
     if not chatInputActive then
-      if IsControlPressed(0, isRDR and `INPUT_MP_TEXT_CHAT_ALL` or 245) --[[ INPUT_MP_TEXT_CHAT_ALL ]] then
+      if IsControlPressed(0, 245) --[[ INPUT_MP_TEXT_CHAT_ALL ]] then
         chatInputActive = true
         chatInputActivating = true
 
@@ -207,7 +210,7 @@ Citizen.CreateThread(function()
     end
 
     if chatInputActivating then
-      if not IsControlPressed(0, isRDR and `INPUT_MP_TEXT_CHAT_ALL` or 245) then
+      if not IsControlPressed(0, 245) then
         SetNuiFocus(true)
 
         chatInputActivating = false
