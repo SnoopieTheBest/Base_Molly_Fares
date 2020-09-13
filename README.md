@@ -1,7 +1,11 @@
 # Base_Molly_Fares
 Base template pour apprendre à developper. 
 
-Il n'y a QUE les esx de base, rien d'autres. 
+- DOUBLE JOBS
+- ESX DE BASE
+- LOADINGSCREEN
+- HUD DE BASE
+
 
 Amusez-vous ;) 
 
