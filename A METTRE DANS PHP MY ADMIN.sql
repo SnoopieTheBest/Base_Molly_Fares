@@ -128,8 +128,6 @@ CREATE TABLE `datastore` (
 
 INSERT INTO `datastore` (`name`, `label`, `shared`) VALUES
 ('property', 'Propriété', 0),
-('society_ambulance', 'Paramedic', 1),
-('society_police', 'Police', 1);
 
 -- --------------------------------------------------------
 
@@ -149,80 +147,7 @@ CREATE TABLE `datastore_data` (
 --
 
 INSERT INTO `datastore_data` (`id`, `name`, `owner`, `data`) VALUES
-(1, 'society_ambulance', NULL, '{}'),
-(2, 'society_police', NULL, '{}'),
 (3, 'property', 'steam:11000013f6dec17', '{}');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `fine_types`
---
-
-CREATE TABLE `fine_types` (
-  `id` int(11) NOT NULL,
-  `label` varchar(255) DEFAULT NULL,
-  `amount` int(11) DEFAULT NULL,
-  `category` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `fine_types`
---
-
-INSERT INTO `fine_types` (`id`, `label`, `amount`, `category`) VALUES
-(1, 'Usage abusif du klaxon', 30, 0),
-(2, 'Franchir une ligne continue', 40, 0),
-(3, 'Circulation à contresens', 250, 0),
-(4, 'Demi-tour non autorisé', 250, 0),
-(5, 'Circulation hors-route', 170, 0),
-(6, 'Non-respect des distances de sécurité', 30, 0),
-(7, 'Arrêt dangereux / interdit', 150, 0),
-(8, 'Stationnement gênant / interdit', 70, 0),
-(9, 'Non respect  de la priorité à droite', 70, 0),
-(10, 'Non-respect à un véhicule prioritaire', 90, 0),
-(11, 'Non-respect d\'un stop', 105, 0),
-(12, 'Non-respect d\'un feu rouge', 130, 0),
-(13, 'Dépassement dangereux', 100, 0),
-(14, 'Véhicule non en état', 100, 0),
-(15, 'Conduite sans permis', 1500, 0),
-(16, 'Délit de fuite', 800, 0),
-(17, 'Excès de vitesse < 5 kmh', 90, 0),
-(18, 'Excès de vitesse 5-15 kmh', 120, 0),
-(19, 'Excès de vitesse 15-30 kmh', 180, 0),
-(20, 'Excès de vitesse > 30 kmh', 300, 0),
-(21, 'Entrave de la circulation', 110, 1),
-(22, 'Dégradation de la voie publique', 90, 1),
-(23, 'Trouble à l\'ordre publique', 90, 1),
-(24, 'Entrave opération de police', 130, 1),
-(25, 'Insulte envers / entre civils', 75, 1),
-(26, 'Outrage à agent de police', 110, 1),
-(27, 'Menace verbale ou intimidation envers civil', 90, 1),
-(28, 'Menace verbale ou intimidation envers policier', 150, 1),
-(29, 'Manifestation illégale', 250, 1),
-(30, 'Tentative de corruption', 1500, 1),
-(31, 'Arme blanche sortie en ville', 120, 2),
-(32, 'Arme léthale sortie en ville', 300, 2),
-(33, 'Port d\'arme non autorisé (défaut de license)', 600, 2),
-(34, 'Port d\'arme illégal', 700, 2),
-(35, 'Pris en flag lockpick', 300, 2),
-(36, 'Vol de voiture', 1800, 2),
-(37, 'Vente de drogue', 1500, 2),
-(38, 'Fabriquation de drogue', 1500, 2),
-(39, 'Possession de drogue', 650, 2),
-(40, 'Prise d\'ôtage civil', 1500, 2),
-(41, 'Prise d\'ôtage agent de l\'état', 2000, 2),
-(42, 'Braquage particulier', 650, 2),
-(43, 'Braquage magasin', 650, 2),
-(44, 'Braquage de banque', 1500, 2),
-(45, 'Tir sur civil', 2000, 3),
-(46, 'Tir sur agent de l\'état', 2500, 3),
-(47, 'Tentative de meurtre sur civil', 3000, 3),
-(48, 'Tentative de meurtre sur agent de l\'état', 5000, 3),
-(49, 'Meurtre sur civil', 10000, 3),
-(50, 'Meurte sur agent de l\'état', 30000, 3),
-(51, 'Meurtre involontaire', 1800, 3),
-(52, 'Escroquerie à l\'entreprise', 2000, 2);
 
 -- --------------------------------------------------------
 
